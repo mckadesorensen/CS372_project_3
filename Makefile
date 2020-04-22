@@ -3,7 +3,7 @@ DIST_DIR := ${SELF_DIR}/dist
 
 .ONESHELL:
 
-.PHONY: container-shell
+.PHONY: container-shell project
 
 image: build/project.Dockerfile
 	cd build && \
@@ -24,3 +24,12 @@ container-shell:
 	terraform init	-reconfigure -input=false -no-color \
 		-backend-config "region=${AWS_REGION}"
 	terraform workspace new ${DEPLOY_NAME} || terraform workspace select ${DEPLOY_NAME}
+
+project: project-init
+	cd terraform/
+	terraform apply -auto-approve -no-color \
+	-var="DEPLOY_NAME=${DEPLOY_NAME}"
+
+destroy-project:
+	cd terraform/
+	terraform destroy -auto-approve -no-color
