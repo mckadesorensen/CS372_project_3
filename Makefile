@@ -17,3 +17,10 @@ container-shell:
 	--name=cs372-dev \
 	--workdir="/CS372_project_3" \
 	cs372dockerdev:latest
+
+%-init:
+	cd terraform/
+	rm -f .terraform/environment
+	terraform init	-reconfigure -input=false -no-color \
+		-backend-config "region=${AWS_REGION}"
+	terraform workspace new ${DEPLOY_NAME} || terraform workspace select ${DEPLOY_NAME}
