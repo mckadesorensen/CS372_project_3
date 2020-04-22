@@ -13,6 +13,6 @@ resource "aws_instance" "server" {
   associate_public_ip_address = true
 
   tags = {
-    Name = "${local.prefix}-server"
+    Name = "${local.prefix}-cs372-server"
   }
 }
