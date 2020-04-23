@@ -2,9 +2,9 @@
 
 ## Table of Content 
 - [Deploying to AWS](#Deploy)
-    -[Docker](#Docker)
-    -[Setting env vars](#Env)
-    -[Deploying](#Deploying)
+    - [Docker](#Docker)
+    - [Setting env vars](#Env)
+    - [Deploying](#Deploying)
 ## Deploy 
 To deploy to AWS, this project uses Terraform. The simplest way to deploy is to use the Dockerfile provided. 
 
