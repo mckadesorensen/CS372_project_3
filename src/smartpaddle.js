@@ -1,31 +1,61 @@
 export default class SmrtPaddle {
-    constructor(gameWidth, gameHeight) {
+    constructor(game) {
         
-        this.gameHeight = gameHeight;
-        this.gameWidth = gameWidth;
-
-        this.width = 15;
-        this.height = 150;
+        this.gameHeight = game.gameHeight;
+        this.gameWidth = game.gameWidth;
+        this.width = 10;
+        this.height = 50;
+        this.maxSpeed = 5;
+        this.speed = 0;
+        this.game = game;
+        this.swap = true;
 
         this.position = {
-            x: gameWidth - this.width*1.5,
-            y: gameHeight / 2 - this.height / 2,
+            x: this.gameWidth - this.width*1.5,
+            y: this.gameHeight / 2 - this.height / 2,
+        };
+        this.lposition = {
+            x: this.gameWidth - this.width*1.5,
+            y: this.gameHeight / 2 - this.height / 2,
         };
     }
     
     draw(ctx) {
-        
         ctx.fillStyle = 'black';
-        ctx.fillRect(this.position.x,this.position.y,this.width,this.height)
+        if(this.swap){
+            this.lposition = this.position;
+            ctx.fillRect(this.position.x,this.position.y,this.width,this.height)
+        }else{
+            ctx.fillRect(this.lposition.x,this.lposition.y,this.width,this.height)
+        }
+        this.swap = !this.swap;
     }
 
     update(deltaTime){
-        if (!deltaTime) return;
-
-        if (this.position.y < this.ameHeight) {
-            this.position.y;
-        } else if (this.position.y > 0) {
-            this.position.y;
+        if(this.position.y > this.game.ball.position.y){
+            this.moveUp();
         }
+        if(this.position.y < this.game.ball.position.y){
+            this.moveDown();
+        }
+        this.position.y += this.speed;
+
+        if (this.position.y + this.height > this.gameHeight) {
+            this.position.y = this.gameHeight - this.height;
+        } else if (this.position.y < 0) {
+            this.position.y = 0;
+        }
+    }
+
+    moveUp(){
+        this.speed = -this.maxSpeed;
+    }
+
+    moveDown(){
+        this.speed = this.maxSpeed;
+    }
+
+    stop(){
+        this.speed = 0;
     }
 }

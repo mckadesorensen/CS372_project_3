@@ -1,16 +1,16 @@
 export default class Paddle {
-    constructor(gameWidth, gameHeight) {
+    constructor(game) {
         
-        this.width = 15;
-        this.height = 150;
-        this.gameHeight = gameHeight;
-        this.gameWidth = gameWidth;
-        this.maxSpeed = 10;
+        this.width = 10;
+        this.height = 50;
+        this.gameHeight = game.gameHeight;
+        this.gameWidth = game.gameWidth;
+        this.maxSpeed = 5;
         this.speed = 0;
 
         this.position = {
             x: this.width/2,
-            y: gameHeight / 2 - this.height / 2,
+            y: this.gameHeight / 2 - this.height / 2,
         };
     }
     
@@ -22,8 +22,6 @@ export default class Paddle {
     }
 
     update(deltaTime){
-        if (!deltaTime) return;
-
         this.position.y += this.speed;
 
         if (this.position.y + this.height > this.gameHeight) {
@@ -39,6 +37,10 @@ export default class Paddle {
 
     moveDown(){
         this.speed = this.maxSpeed;
+    }
+
+    stop(){
+        this.speed = 0;
     }
 
 
