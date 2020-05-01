@@ -2,7 +2,7 @@ export default class Ball {
     constructor(game){
         this.image = document.getElementById("img_ball");
         this.size = 16;
-        let ys = Math.floor((Math.random() * game.gameHeight) + 1);
+        let ys = Math.floor((Math.random() * (game.gameHeight - 100)) + 1);
         let xs = game.gameWidth/2;
         this.position = {x: xs, y: ys};
         this.speed = {x: 5, y: 5};
