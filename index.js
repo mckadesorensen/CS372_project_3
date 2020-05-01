@@ -1,7 +1,15 @@
-let canvas = document.getElementById("gameScreen");
+import Paddle from '/paddle';
 
+
+let canvas = document.getElementById("gameScreen");
 let ctx = canvas.getContext('2d');
 
-ctx.fillStyle = '#f00';
+const GAME_WIDTH = 800;
+const GAME_HEIGHT = 600;
 
-ctx.fillRect(20, 20, 100, 100);
+
+ctx.clearRect(0 ,0, GAME_WIDTH, GAME_HEIGHT);
+
+let paddle = new Paddle(GAME_WIDTH, GAME_HEIGHT);
+
+paddle.draw(ctx);
