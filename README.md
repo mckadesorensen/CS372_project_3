@@ -5,6 +5,7 @@
     - [Docker](#Docker)
     - [Setting environmental variables](#Env)
     - [Deploying](#Deploying)
+- [Development of code](#Development)
 ## Deploy 
 To deploy to AWS, this project uses Terraform. The simplest way to deploy is to use the Dockerfile provided. 
 
@@ -28,3 +29,8 @@ Finally run the command:
 ```
 make project
 ```
+
+## Development
+The program is index.html.
+All JavaScript files are stored in /src.
+All assets are stored in /assets/typeOfAsset. An image for example is in /assets/images.
